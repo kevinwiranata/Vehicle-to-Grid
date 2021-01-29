@@ -1,0 +1,11 @@
+{
+	"index": {
+		"fields": [
+			"age",
+			"model"
+		]
+	},
+	"ddoc": "indexEVDoc",
+	"name": "indexEV",
+	"type": "json"
+}
