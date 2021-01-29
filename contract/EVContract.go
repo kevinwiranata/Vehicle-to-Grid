@@ -16,7 +16,7 @@ type EVContract struct {
 	contractapi.Contract
 }
 
-// InitLedger creates the initial set of assets in the ledger.
+// InitLedger creates the initial set of EVs in the ledger.
 func (c *EVContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
 	EVUsers := []EV{
 		{ID: "ID1", Model: "Tesla", Age: 3},
@@ -88,7 +88,7 @@ func (c *EVContract) ReadEVData(ctx contractapi.TransactionContextInterface, ID 
 	return evUser, nil
 }
 
-// UpdateEVData retrieves an instance of MyAsset from the world state and updates its value
+// UpdateEVData retrieves an EV from the world state and updates its value
 func (c *EVContract) UpdateEVData(ctx contractapi.TransactionContextInterface, ID string, PowerCharge float64, PowerDischarge float64, Temperature float64) error {
 	evUser := new(EV)
 	evUser.ID = ID
@@ -106,7 +106,7 @@ func (c *EVContract) UpdateEVData(ctx contractapi.TransactionContextInterface, I
 	return evUser.SaveState(ctx)
 }
 
-// DeleteEVUser deletes an instance of MyAsset from the world state
+// DeleteEVUser deletes an EV from the world state
 func (c *EVContract) DeleteEVUser(ctx contractapi.TransactionContextInterface, ID string) error {
 	evUser := new(EV)
 	evUser.ID = ID
@@ -148,6 +148,12 @@ func (c *EVContract) QueryAll(ctx contractapi.TransactionContextInterface) ([]*E
 }
 
 //QueryByFields allows users to query with optional fields
+//Performs a rich query on couchDB with indexing (paramters can be tuned in the future)
+//Parameters and the selectors can be tuend accordingly:
+// model -> model of car
+// age   -> age of car
+// op    -> operator for comparison (i.e. $eq, $gt, $gte, $lt, $lte)
+// QueryByFields(Tesla, $gt, 2) will return all Teslas that have age greater than 2
 func (c *EVContract) QueryByFields(ctx contractapi.TransactionContextInterface, model string, op string, age int) ([]*EV, error) {
 	queryString := fmt.Sprintf(`{"selector":{"model": "%s", "age": {"%s": %v}}, "use_index": ["_design/indexEVDoc", "indexEV"]}`, model, op, age)
 	//queryString := fmt.Sprintf(`{"selector":{"model":"%s", "age": %v}}`, model, age)
