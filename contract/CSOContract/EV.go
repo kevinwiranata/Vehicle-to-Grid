@@ -23,6 +23,7 @@ type EV struct {
 	PowerDischarge float64 `json:"power_discharge"`
 	Age            int     `json:"age"`
 	Temperature    float64 `json:"temperature"`
+	Energy         float64 `json:"energy"`
 }
 
 // ToCompositeKey returns a composite key based on the ID and accountType

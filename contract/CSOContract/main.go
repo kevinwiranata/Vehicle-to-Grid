@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	myAssetContract := new(EVContract)
+	myAssetContract := new(CSOContract)
 	myAssetContract.Info.Version = "0.0.1"
 	myAssetContract.Info.Description = "My Smart Contract"
 	myAssetContract.Info.License = new(metadata.LicenseMetadata)
