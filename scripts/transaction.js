@@ -36,8 +36,8 @@ const sendTx = async (data) => {
 				}, {
 					// firefly basic auth 
 					auth: {
-						username: "u0anvf575c",
-						password: "5o7bDtmzd0wpGBJKdppZ8iCYhseUCtxJwoP0NRkQSIA"
+						username: process.env.username,
+						password: process.env.password
 					}
 				}
 			)

@@ -38,3 +38,6 @@ Temporary Items
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Environment Variables
+.env
