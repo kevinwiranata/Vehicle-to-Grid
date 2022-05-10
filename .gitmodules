@@ -1,0 +1,6 @@
+[submodule "contracts/EV_Contract"]
+	path = contracts/EV_Contract
+	url = https://github.com/kevinwiranata/EV_Contract.git
+[submodule "contracts/CSO_Contract"]
+	path = contracts/CSO_Contract
+	url = https://github.com/kevinwiranata/CSO_Contract.git
