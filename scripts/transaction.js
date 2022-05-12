@@ -15,18 +15,18 @@ const sendTx = async (data) => {
 	for (const EV in data) {
 		await axios
 			.post(
-				"https://u0ekz2lj7j-u0xeyovsc6-connect.us0-aws-ws.kaleido.io/transactions?fly-sync=true",
+				"https://u0ekz2lj7j-u0xeyovsc6-connect.us0-aws-ws.kaleido.io/transactions?fly-sync=false",
 				{
 					headers: {
 						type: "SendTransaction",
 						signer: "user2",
 						channel: "default-channel",
-						chaincode: "cso_contract",
+						chaincode: "ev_contract",
 					},
-					func: "TransactEnergy",
+					func: "UpdateEVData",
 					args: [
-						String(data[EV].CSOID),
 						String(data[EV].EVID),
+						String(data[EV].CSOID),
 						String(data[EV].ChID),
 						String(data[EV].Power_flow),
 						String(data[EV].Money),
